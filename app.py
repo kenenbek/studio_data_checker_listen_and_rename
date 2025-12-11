@@ -3,12 +3,16 @@ import os
 # --- ☢️ NUCLEAR PROXY FIX ☢️ ---
 # We must delete these variables so Gradio doesn't try to send
 # localhost traffic to your corporate proxy.
-for key in ["http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY"]:
+for key in ["http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY", "all_proxy", "ALL_PROXY"]:
     if key in os.environ:
         del os.environ[key]
 
 # Force Python to look locally
 os.environ["no_proxy"] = "localhost,127.0.0.1,::1"
+os.environ["NO_PROXY"] = "localhost,127.0.0.1,::1"
+
+# Disable Gradio analytics and telemetry which may cause network checks
+os.environ["GRADIO_ANALYTICS_ENABLED"] = "False"
 
 
 import gradio as gr
@@ -174,6 +178,10 @@ with gr.Blocks(title="TTS Reviewer", fill_height=True) as demo:
 
 # --- LAUNCH ---
 if __name__ == "__main__":
+    # Monkey-patch to skip localhost check
+    import gradio.networking
+    gradio.networking.url_ok = lambda url: True
+
     # We don't need allowed_paths anymore because we are embedding the data directly!
     demo.launch(
         server_name="127.0.0.1",  # <--- Explicitly bind to localhost
