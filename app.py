@@ -103,6 +103,7 @@ with gr.Blocks(title="TTS Reviewer", fill_height=True) as demo:
 if __name__ == "__main__":
     # We don't need allowed_paths anymore because we are embedding the data directly!
     demo.launch(
+        server_name="127.0.0.1",  # <--- Explicitly bind to localhost
         server_port=9000,
         share=False,  # <--- This ensures NO public link is created
         theme=gr.themes.Soft(),
