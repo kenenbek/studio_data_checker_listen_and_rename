@@ -23,22 +23,48 @@ JSON_FILE = os.path.join(AUDIO_FOLDER, "data_tv_show_007.json")
 
 # --- CSS ---
 custom_css = """
+html, body { 
+    margin: 0 !important; 
+    padding: 0 !important; 
+    height: 100vh !important; 
+    overflow: hidden !important;
+}
 .gradio-container { 
     max-width: 100% !important; 
-    padding: 10px !important;
+    padding: 5px !important;
+    margin: 0 !important;
     height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
-.main { height: 100% !important; }
+.main { 
+    height: 100% !important; 
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+.contain { 
+    height: 100% !important; 
+    display: flex !important;
+    flex-direction: column !important;
+}
 #dataset_table { 
-    height: calc(100vh - 120px) !important; 
-    max-height: calc(100vh - 120px) !important; 
+    flex: 1 !important;
+    height: 100% !important; 
+    min-height: 0 !important;
 }
 #dataset_table > .wrap { 
     height: 100% !important; 
-    max-height: 100% !important; 
+    display: flex !important;
+    flex-direction: column !important;
+}
+#dataset_table .table-wrap {
+    flex: 1 !important;
+    height: 100% !important;
+    overflow: auto !important;
 }
 #dataset_table .tbody-wrap { 
-    max-height: 100% !important; 
+    max-height: none !important; 
     height: 100% !important; 
 }
 audio { width: 100%; min-width: 200px; }
@@ -108,7 +134,8 @@ with gr.Blocks(title="TTS Reviewer", fill_height=True) as demo:
             headers=["Audio", "Transcription", "Speaker", "Tone", "Filename"],
             interactive=False,
             wrap=True,
-            elem_id="dataset_table"
+            elem_id="dataset_table",
+            height=900  # Set a large height value
         )
     else:
         gr.Warning("No data found!")
