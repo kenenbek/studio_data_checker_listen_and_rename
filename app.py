@@ -134,8 +134,7 @@ with gr.Blocks(title="TTS Reviewer", fill_height=True) as demo:
             headers=["Audio", "Transcription", "Speaker", "Tone", "Filename"],
             interactive=False,
             wrap=True,
-            elem_id="dataset_table",
-            height=900  # Set a large height value
+            elem_id="dataset_table"
         )
     else:
         gr.Warning("No data found!")
