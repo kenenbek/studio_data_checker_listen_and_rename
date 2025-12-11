@@ -48,24 +48,57 @@ html, body {
     display: flex !important;
     flex-direction: column !important;
 }
+.block {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
 #dataset_table { 
     flex: 1 !important;
     height: 100% !important; 
     min-height: 0 !important;
+    max-height: none !important;
 }
-#dataset_table > .wrap { 
-    height: 100% !important; 
+#dataset_table > div {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+#dataset_table .wrap { 
+    height: 100% !important;
+    flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
 }
 #dataset_table .table-wrap {
     flex: 1 !important;
     height: 100% !important;
+    max-height: none !important;
     overflow: auto !important;
+}
+#dataset_table table {
+    height: 100% !important;
+}
+#dataset_table thead {
+    position: sticky !important;
+    top: 0 !important;
+    background: white !important;
+    z-index: 10 !important;
 }
 #dataset_table .tbody-wrap { 
     max-height: none !important; 
-    height: 100% !important; 
+    height: 100% !important;
+    flex: 1 !important;
+}
+#dataset_table tbody {
+    height: 100% !important;
+}
+/* Target all parent divs */
+#dataset_table,
+#dataset_table > *,
+#dataset_table > * > * {
+    display: flex !important;
+    flex-direction: column !important;
 }
 audio { width: 100%; min-width: 200px; }
 """
