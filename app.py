@@ -23,10 +23,24 @@ JSON_FILE = os.path.join(AUDIO_FOLDER, "data_tv_show_007.json")
 
 # --- CSS ---
 custom_css = """
-.gradio-container { max-width: 98% !important; }
-#dataset_table { height: 85vh !important; max_height: 85vh !important; }
-#dataset_table > .wrap { height: 100% !important; max_height: 100% !important; }
-#dataset_table .tbody-wrap { max-height: 100% !important; height: 100% !important; }
+.gradio-container { 
+    max-width: 100% !important; 
+    padding: 10px !important;
+    height: 100vh !important;
+}
+.main { height: 100% !important; }
+#dataset_table { 
+    height: calc(100vh - 120px) !important; 
+    max-height: calc(100vh - 120px) !important; 
+}
+#dataset_table > .wrap { 
+    height: 100% !important; 
+    max-height: 100% !important; 
+}
+#dataset_table .tbody-wrap { 
+    max-height: 100% !important; 
+    height: 100% !important; 
+}
 audio { width: 100%; min-width: 200px; }
 """
 
@@ -83,7 +97,7 @@ def load_dataset():
 
 # --- UI ---
 with gr.Blocks(title="TTS Reviewer", fill_height=True) as demo:
-    gr.Markdown("## 🎧 TTS Dataset Reviewer")
+    gr.Markdown("### 🎧 TTS Dataset Reviewer")
 
     df = load_dataset()
 
